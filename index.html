@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Message Viewer</title>
+    <script>
+        // Auto-refresh every 5 seconds (5000 milliseconds)
+        setInterval(function() {
+            location.reload();
+        }, 5000);
+    </script>
+</head>
+<body>
+    <h1>Messages</h1>
+    <ul>
+        {{range .Messages}}
+        <li>{{.Sender}} to {{.Recipient}}: {{.Content}}</li>
+        {{end}}
+    </ul>
+    
+    <h2>Create New Message</h2>
+    <form method="POST" action="/">
+        <label for="sender">Sender:</label>
+        <input type="text" id="sender" name="sender" required><br>
+        
+        <label for="recipient">Recipient:</label>
+        <input type="text" id="recipient" name="recipient" required><br>
+        
+        <label for="content">Content:</label>
+        <textarea id="content" name="content" required></textarea><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+    
+    <h2>Server Status</h2>
+    <p>{{.ServerStatus}}</p>
+</body>
+</html>
